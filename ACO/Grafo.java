@@ -29,8 +29,30 @@ public class Grafo{
 		nodos.put(nombreCiudad,n);
 	}
 
-	public String optimizacionHormiga(){
+	public String optimizacionHormiga(int numeroIteraciones,int numeroHormigas,String origen){
+		if(nodos.containsKey(origen)){
+			return optimizacion(numeroIteraciones,numeroHormigas,origen);
+		}else{
+			return "La ciudad que ingresaste no existe";
+		}
+	}
 
+	private String optimizacion(int numeroIteraciones,int numeroHormigas,String origen){
+		/*
+		* Se pasara el string como un camino.
+		* Si se encuentra uno igual se añadira +1 al contador
+		*/
+		HashMap<String,Integer> mejoresCaminos = new HashMap<String,Integer>();
+
+		for(int x = 0;x<numeroIteraciones;x++){
+			for(int y=0;y<numeroHormigas;y++){
+				
+				Hormiga h = new Hormiga(origen);
+				
+
+			}
+		}
+		return "";
 	}
 
 }

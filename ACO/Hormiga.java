@@ -6,13 +6,15 @@ public class Hormiga{
 	private List<String> visitados;
 	private List<Adyacencia> caminosUtilizados;
 	private String nodoActual;
+	private String nodoInicial;
 	private int acumuladoCamino;
 
-	public Hormiga(){
+	public Hormiga(String nodoInicial){
 		this.visitados = new ArrayList<String>();
 		this.caminosUtilizados = new ArrayList<Adyacencia>();
 		this.acumuladoCamino = 0;
 		this.nodoActual = null;
+		this.nodoInicial = nodoInicial;
 	}
 
 	public void addAdyacencia(Adyacencia a){
