@@ -1,23 +1,19 @@
-import java.util.HashMap;
+import java.util.HashSet;
 public class Nodo{
+
 	/*
-	*id: ID del nodo
 	*nombre: Nombre de la ciudad
 	*adyacencias: id del nodo adyacente y su peso
 	*/
-	private int id;
+
 	private String nombre;
-	private HashMap<Integer,Double> adyacencias;
+	private HashSet<String> adyacencias;
 
-	public Nodo(int id,String nombre){
-		this.id = id;
+	public Nodo(String nombre){
 		this.nombre = nombre;
-		adyacencias = new HashMap<Integer,Double>();
+		adyacencias = new HashSet<String>();
 	}
 
-	public int getId(){
-		return this.id;
-	}
 
 	public void setNombre(String nombre){
 		this.nombre = nombre;
@@ -27,13 +23,28 @@ public class Nodo{
 		return this.nombre;
 	}
 
-	public HashMap<Integer,Double> getAdyacencias(){
+	public void addAdyacencias(String[] ad){
+		for(String a : ad){
+			this.addAdyacencia(a);
+		}
+	}
+
+	public void addAdyacencia(String a){
+		this.adyacencias.add(a);
+	}
+
+	public HashSet<String> getAdyacencias(){
 		return this.adyacencias;
 	}
 
 	@Override
 	public boolean equals(Object other){
-		return (((Nodo)other).getId() == this.id)? true:false;
+		return (((Nodo)other).getNombre().equals(this.nombre))? true:false;
+	}
+
+	@Override
+	public String toString(){
+		return this.nombre;
 	}
 
 }

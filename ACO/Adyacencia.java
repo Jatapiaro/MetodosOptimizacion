@@ -1,9 +1,10 @@
 public class Adyacencia{
 	
-	private int idOrigen,idDestino,constanteQ;
+	private String idOrigen,idDestino;
+	private int constanteQ;
 	private float peso,cantidadFeromona,tasaEvaporacion;
 
-	public Adyacencia(int idOrigen,int idDestino,float peso){
+	public Adyacencia(String idOrigen,String idDestino,float peso){
 		this.idOrigen = idOrigen;
 		this.idDestino = idDestino;
 		this.peso = peso;
@@ -12,11 +13,11 @@ public class Adyacencia{
 		this.tasaEvaporacion = 0.01f;
 	}
 
-	public int getIdOrigen(){
+	public String getIdOrigen(){
 		return this.idOrigen;
 	}
 
-	public int getIdDestino(){
+	public String getIdDestino(){
 		return this.idDestino;
 	}
 
@@ -58,11 +59,16 @@ public class Adyacencia{
 		this.cantidadFeromona = (1-tasaEvaporacion)*this.cantidadFeromona;
 	}
 
+	public void reset(){
+		this.cantidadFeromona = 0.1f;
+		this.tasaEvaporacion = 0.01f;
+	}
+
 	@Override
 	public boolean equals(Object o){
 		Adyacencia other = (Adyacencia)o;
-		if(other.getIdOrigen() == this.idOrigen && 
-			other.getIdDestino() == this.idDestino){
+		if(other.getIdOrigen().equals(this.idOrigen) && 
+			other.getIdDestino().equals(this.idDestino)){
 			return true;
 		}else{
 			return false;

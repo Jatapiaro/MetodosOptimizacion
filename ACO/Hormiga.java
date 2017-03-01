@@ -3,14 +3,28 @@ import java.util.ArrayList;
 
 public class Hormiga{
 	
-	private List<Integer> visitados;
-	private List<Adyacencias> caminosUtilizados;
+	private List<String> visitados;
+	private List<Adyacencia> caminosUtilizados;
+	private String nodoActual;
 	private int acumuladoCamino;
 
 	public Hormiga(){
-		this.visitados = new ArrayList<Integer>();
-		this.caminosUtilizados = new ArrayList<Adyacencias>();
+		this.visitados = new ArrayList<String>();
+		this.caminosUtilizados = new ArrayList<Adyacencia>();
 		this.acumuladoCamino = 0;
+		this.nodoActual = null;
+	}
+
+	public void addAdyacencia(Adyacencia a){
+		String destino = a.getIdDestino();
+		float peso = a.getPeso();
+		Adyacencia aux = new Adyacencia(this.nodoActual,destino,peso);
+		caminosUtilizados.add(aux);
+		visitados.add(destino);
+	}
+
+	public void setNodoActual(String nodoActual){
+		this.nodoActual = nodoActual;
 	}
 
 	public int getAcumulado(){
@@ -19,6 +33,13 @@ public class Hormiga{
 
 	public void addAcumulado(int peso){
 		this.acumuladoCamino+=peso;
+	}
+
+	public void reset(){
+		this.acumuladoCamino = 0;
+		this.nodoActual = null;
+		this.caminosUtilizados = new ArrayList<Adyacencia>();
+		this.visitados = new ArrayList<String>();
 	}
 
 }
