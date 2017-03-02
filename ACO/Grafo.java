@@ -97,7 +97,6 @@ public class Grafo{
 			Adyacencia a = adyacencias.get(k);
 			acumulado+=a.getVisibilidadPorFeromona();
 		}
-
 		
 		/*while(it.hasNext()){
 			Key k = new Key(actual,(String)it.next());
