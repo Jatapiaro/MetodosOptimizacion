@@ -45,6 +45,10 @@ public class Adyacencia{
 		return 1/this.peso;
 	}
 
+	public float getVisibilidadPorFeromona(){
+		return this.getVisibilidad()*this.cantidadFeromona;
+	}
+
 	public void actualizarFeromona(float totalCamino){
 		//(1-tasaEvaporacion)*cantidadFeromona
 		float aux = (1-tasaEvaporacion)*this.cantidadFeromona;

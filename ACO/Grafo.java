@@ -48,10 +48,76 @@ public class Grafo{
 			for(int y=0;y<numeroHormigas;y++){
 				
 				Hormiga h = new Hormiga(origen);
-				
-
+				while(true){
+					String aux = getNextPath(h.getNodoActual());
+					if(aux.equals(origen)){
+						/*
+						*Si regreso al origen
+						*detente
+						*/
+						if(h.getNumeroVisitados() == this.nodos.size()){
+							String s = h.caminoToString();
+							if(mejoresCaminos.containsKey(s)){
+								 
+							}
+						}
+						break;
+					}else if(!aux.equals("")){
+						Key k = new Key(h.getNodoActual(),aux);
+						Adyacencia ad = adyacencias.get(k);
+						h.addAcumulado(ad);
+					}else{
+						/*
+						*Es decir que se visito todo lo que se pudo
+						*pero no hay forma de regresar o llegar al origen
+						*/
+						numeroHormigas--;
+						break;
+						/*
+						*Es decir ponemos a la hormiga a buscar 
+						*un nuevo camino
+						*/
+					}
+				}
 			}
 		}
+		return "";
+	}
+
+
+	private String getNextPath(String actual){
+
+		HashSet<String> ady = nodos.get(actual).getAdyacencias();
+		List<AdyacenciaAuxiliar> l = new ArrayList<AdyacenciaAuxiliar>();
+		float acumulado = 0.0f;
+
+		Iterator it = ady.iterator();
+		while(it.hasNext()){
+			Key k = new Key(actual,(String)it.next());
+			Adyacencia a = adyacencias.get(k);
+			acumulado+=a.getVisibilidadPorFeromona();
+		}
+
+		
+		/*while(it.hasNext()){
+			Key k = new Key(actual,(String)it.next());
+			Adyacencia a = adyacencias.get(k);
+			AdyacenciaAuxiliar au =
+			 new AdyacenciaAuxiliar(
+			 	a.getIdOrigen(),a.getIdDestino(),suma,(suma+a.getPeso()));
+			suma+=a.getPeso();
+			l.add(au);
+		}*/
+
+
+		float random = (float)Math.random();
+
+		for(AdyacenciaAuxiliar au : l){
+			if(au.isSelected(random)){
+				return au.getB();
+			}
+		}
+
 		return "";
 	}
 
