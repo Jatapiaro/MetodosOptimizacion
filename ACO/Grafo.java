@@ -38,10 +38,20 @@ public class Grafo{
 
 
 	public String optimizacionHormiga(int numeroIteraciones,int numeroHormigas,String origen){
+		this.reset();
 		if(nodos.containsKey(origen)){
 			return optimizacion(numeroIteraciones,numeroHormigas,origen);
 		}else{
 			return "La ciudad que ingresaste no existe";
+		}
+	}
+
+	private void reset(){
+		Iterator it = this.adyacencias.entrySet().iterator();
+		while (it.hasNext()) {
+		    Map.Entry pair = (Map.Entry)it.next();
+		    Adyacencia a = (Adyacencia)pair.getValue();
+		    a.reset();
 		}
 	}
 
@@ -130,6 +140,7 @@ public class Grafo{
 		System.out.println(sb.toString());
 
 		if(mejoresCaminos.isEmpty()){
+
 			return "No hay forma de completar el recorrido";
 		}else{
 			Iterator it = mejoresCaminos.entrySet().iterator();
