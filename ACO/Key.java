@@ -21,6 +21,11 @@ public class Key{
 	}
 
 	@Override
+	public String toString(){
+		return "["+this.a+","+this.b+"]";
+	}
+
+	@Override
 	public boolean equals(Object o) {
 	    Key key = (Key) o;
 	    return this.a.equals(key.getA()) && this.b.equals(key.getB());

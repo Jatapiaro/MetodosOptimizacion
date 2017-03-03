@@ -21,13 +21,9 @@ public class Hormiga{
 		this.camino.add(nodoInicial+"/0");
 	}
 
-	/*public void addAdyacencia(Adyacencia a){
-		String destino = a.getIdDestino();
-		float peso = a.getPeso();
-		Adyacencia aux = new Adyacencia(this.nodoActual,destino,peso);
-		adyacenciasUtilizadas.add(aux);
-		visitados.add(destino);
-	}*/
+	public String getNodoInicial(){
+		return this.nodoInicial;
+	}
 
 	public void setNodoActual(String nodoActual){
 		this.nodoActual = nodoActual;
@@ -37,7 +33,7 @@ public class Hormiga{
 		return this.nodoActual;
 	}
 
-	public int getAcumulado(){
+	public int getAcumuladoCamino(){
 		return this.acumuladoCamino;
 	}
 
@@ -49,7 +45,21 @@ public class Hormiga{
 		this.addAcumulado(a.getPeso());
 		this.adyacenciasUtilizadas.add(a);
 		this.visitados.add(a.getIdDestino());
+		//System.out.println("Destino: "+a.getIdDestino());
 		this.camino.add(a.getIdDestino()+"/"+this.acumuladoCamino);
+		this.nodoActual = a.getIdDestino();
+	}
+
+	public List<Adyacencia> getAdyacenciasUtilizadas(){
+		return this.adyacenciasUtilizadas;
+	}
+
+	public boolean usoAdyacencia(Adyacencia a){
+		return (this.adyacenciasUtilizadas.contains(a))? true:false;
+	}
+
+	public boolean visitoNodo(String a){
+		return (this.visitados.contains(a))? true:false;
 	}
 
 	public int getNumeroVisitados(){
@@ -63,6 +73,10 @@ public class Hormiga{
 		this.visitados = new HashSet<String>();
 	}
 
+	public HashSet<String> getVisitados(){
+		return this.visitados;
+	}
+
 	public String caminoToString(){
 		StringBuilder sb = new StringBuilder();
 		for(int i=0;i<this.camino.size();i++){
@@ -71,6 +85,15 @@ public class Hormiga{
 			}else{
 				sb.append(camino.get(i)+"->");
 			}
+		}
+		return sb.toString();
+	}
+
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		for(Adyacencia a : this.adyacenciasUtilizadas){
+			sb.append(a+" : ");
 		}
 		return sb.toString();
 	}

@@ -69,6 +69,11 @@ public class Adyacencia{
 	}
 
 	@Override
+	public String toString(){
+		return this.idOrigen+"->"+this.idDestino+" tiene "+this.cantidadFeromona+" de feromona";
+	}
+
+	@Override
 	public boolean equals(Object o){
 		Adyacencia other = (Adyacencia)o;
 		if(other.getIdOrigen().equals(this.idOrigen) && 

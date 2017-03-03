@@ -27,4 +27,9 @@ public class AdyacenciaAuxiliar{
 		return this.b;
 	}
 
+	@Override
+	public String toString(){
+		return ""+this.a+"->"+this.b;
+	}
+
 }
