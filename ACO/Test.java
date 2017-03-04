@@ -22,20 +22,7 @@ public class Test{
 
 		gf.addDobleAdyacencia("G","F",5.0f);
 
-		while(true){
-			int nIteraciones,nHormigas;
-			String origen;
-			System.out.println(
-				"Ingresa (#Iteraciones #Hormigas NombreNodo) separados por un espacio:\n");
-			nIteraciones = sc.nextInt();
-			nHormigas = sc.nextInt();
-			origen = sc.next();
-			if(nIteraciones+nHormigas != 0){
-				System.out.println("Camino: "+gf.optimizacionHormiga(nIteraciones,nHormigas,origen)+"\n");
-			}else{
-				break;
-			}
-		}
+		System.out.println(gf.optimizacionHormiga(100,5000,"A"));
 
 	}
 }

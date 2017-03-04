@@ -90,24 +90,23 @@ public class Grafo{
 							}else{
 								mejoresCaminos.put(s,1);
 							}
-							
-
-							/*
-							*Procedemos a actualizar las feromonas
-							*/
-							float totalCamino = h.getAcumuladoCamino();
-
-							Iterator it = this.adyacencias.entrySet().iterator();
-							while (it.hasNext()) {
-							    Map.Entry pair = (Map.Entry)it.next();
-							    Adyacencia a = (Adyacencia)pair.getValue();
-							    if(h.usoAdyacencia(a)){
-							    	a.actualizarFeromona(totalCamino);
-							    }else{
-							    	a.actualizarFeromona();
-							    }
-							}
 						}
+						/*
+						*Procedemos a actualizar las feromonas
+						*/
+						float totalCamino = h.getAcumuladoCamino();
+
+						Iterator it = this.adyacencias.entrySet().iterator();
+						while (it.hasNext()) {
+						    Map.Entry pair = (Map.Entry)it.next();
+						    Adyacencia a = (Adyacencia)pair.getValue();
+						    if(h.usoAdyacencia(a)){
+						    	a.actualizarFeromona(a.getPeso());
+						    }else{
+						    	a.actualizarFeromona();
+						    }
+						}
+
 						break;
 					}else if(!aux.equals("")){
 						Key k = new Key(h.getNodoActual(),aux);
@@ -140,7 +139,6 @@ public class Grafo{
 		System.out.println(sb.toString());
 
 		if(mejoresCaminos.isEmpty()){
-
 			return "No hay forma de completar el recorrido";
 		}else{
 			Iterator it = mejoresCaminos.entrySet().iterator();

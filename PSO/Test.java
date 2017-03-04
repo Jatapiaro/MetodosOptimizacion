@@ -4,7 +4,7 @@ public class Test{
 
 		ParticleSwarmOptimization pso = new ParticleSwarmOptimization();
 
-		pso.PSO(10,3,-500,500);
+		pso.PSO(5000,50,-500,500);
 
 	}
 }

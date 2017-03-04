@@ -13,7 +13,26 @@ public class ParticleSwarmOptimization{
 		Particula lider = this.particulas.peek();
 		for(int x=0;x<numeroIteraciones;x++){
 
+			//System.out.println("Líder: "+lider);
+
+			Iterator<Particula> it = particulas.iterator();
+			while (it.hasNext()) {
+			    Particula p = it.next();
+			    p.updateData(lider);
+			    float eval = funcionObjetivo(p);
+			    p.updatePersonalBest(eval);
+			}
+			lider = this.particulas.peek();
 		}
+
+		/*Iterator<Particula> it = particulas.iterator();
+		while (it.hasNext()) {
+		    Particula p = it.next();
+		    System.out.println(p);
+		}*/
+
+		System.out.println(particulas.peek());
+
 	}
 
 	private void crearParticulas(int numeroParticulas,float a,float b){

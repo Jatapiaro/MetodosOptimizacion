@@ -1,9 +1,8 @@
 import java.util.Random;
 public class Particula implements Comparable<Particula>{
 	
-	private static Random r = new Random();
+	
 	private Punto posicionActual,posicionMejor;
-	private float velocidad;
 
 	public Particula(float a,float b){
 		
@@ -12,7 +11,7 @@ public class Particula implements Comparable<Particula>{
 		float y = posicionActual.getY();
 		float z = posicionActual.getZ();
 		posicionMejor = new Punto(x,y,z);
-		velocidad = r.nextFloat();
+
 	}
 
 	public Punto getPosicionActual(){
@@ -23,16 +22,17 @@ public class Particula implements Comparable<Particula>{
 		return this.posicionMejor;
 	}
 
-	public void updateVelocity(Particula globalBest,int numeroIteracion){
-		/*
-		*vi = vi +r1(pi −xi)+r2(pg −xi)
-		*/
+	public void updateData(Particula gBest){
+		posicionActual.updateData(posicionMejor,gBest.getPosicionMejor());
+	}
 
-		/*
-		*  c1 = random*(mejorParticula-posicionActual)
-		*  c2 = random*(mejorGlobal-posicionActual)
-		* ¿Posición compuesta por 3 valores?, ¿Cómo se hace?
-		*/
+	public void updatePersonalBest(float evaluacion){
+		if(evaluacion<this.posicionMejor.getEvaluacion()){
+			float x = this.posicionActual.getX();
+			float y = this.posicionActual.getY();
+			float z = this.posicionActual.getZ();
+			this.posicionMejor.setXYZ(x,y,z);
+		}
 	}
 
 	@Override
@@ -46,9 +46,9 @@ public class Particula implements Comparable<Particula>{
 		* si este es menor que el argumento -> -1
 		* si este mayor que el argumento -> 1
 		*/
-		if(this.posicionActual.getEvaluacion() == other.getPosicionActual().getEvaluacion()){
+		if(this.posicionMejor.getEvaluacion() == other.getPosicionMejor().getEvaluacion()){
 			return 0;
-		}else if(this.posicionActual.getEvaluacion() < other.getPosicionActual().getEvaluacion()){
+		}else if(this.posicionMejor.getEvaluacion() < other.getPosicionMejor().getEvaluacion()){
 			return -1;
 		}else{
 			return 1;
