@@ -22,7 +22,7 @@ public class Test{
 
 		gf.addDobleAdyacencia("G","F",5.0f);
 
-		System.out.println(gf.optimizacionHormiga(100,5000,"A"));
+		System.out.println(gf.optimizacionHormiga(100,50,"A"));
 
 	}
 }

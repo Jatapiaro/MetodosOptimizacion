@@ -3,7 +3,6 @@ Usa python 3
 se necesita scipy
 
 """
-
 import scipy.optimize as sciOpt
 import math
 import random

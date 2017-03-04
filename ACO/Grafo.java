@@ -91,22 +91,6 @@ public class Grafo{
 								mejoresCaminos.put(s,1);
 							}
 						}
-						/*
-						*Procedemos a actualizar las feromonas
-						*/
-						float totalCamino = h.getAcumuladoCamino();
-
-						Iterator it = this.adyacencias.entrySet().iterator();
-						while (it.hasNext()) {
-						    Map.Entry pair = (Map.Entry)it.next();
-						    Adyacencia a = (Adyacencia)pair.getValue();
-						    if(h.usoAdyacencia(a)){
-						    	a.actualizarFeromona(a.getPeso());
-						    }else{
-						    	a.actualizarFeromona();
-						    }
-						}
-
 						break;
 					}else if(!aux.equals("")){
 						Key k = new Key(h.getNodoActual(),aux);
@@ -124,6 +108,22 @@ public class Grafo{
 						*un nuevo camino
 						*/
 					}
+				}
+
+				/*
+				*Procedemos a actualizar las feromonas
+				*/
+				//float totalCamino = h.getAcumuladoCamino();
+
+				Iterator it = this.adyacencias.entrySet().iterator();
+				while (it.hasNext()) {
+				    Map.Entry pair = (Map.Entry)it.next();
+				    Adyacencia a = (Adyacencia)pair.getValue();
+				    if(h.usoAdyacencia(a)){
+				    	a.actualizarFeromona(a.getPeso());
+				    }else{
+				    	a.actualizarFeromona();
+				    }
 				}
 				
 			}
