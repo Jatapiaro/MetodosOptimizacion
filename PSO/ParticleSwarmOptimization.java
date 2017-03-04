@@ -10,7 +10,10 @@ public class ParticleSwarmOptimization{
 	public void PSO(int numeroIteraciones, int numeroParticulas,float a,float b){
 		this.reset();
 		this.crearParticulas(numeroParticulas,a,b);
-		//System.out.println(particulas.peek());
+		Particula lider = this.particulas.peek();
+		for(int x=0;x<numeroIteraciones;x++){
+
+		}
 	}
 
 	private void crearParticulas(int numeroParticulas,float a,float b){
@@ -19,7 +22,6 @@ public class ParticleSwarmOptimization{
 			float eval = funcionObjetivo(p);
 			p.getPosicionActual().setEvaluacion(eval);
 			p.getPosicionMejor().setEvaluacion(eval);
-			//System.out.println(p);
 			particulas.add(p);
 		}
 	}
