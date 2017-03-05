@@ -41,12 +41,11 @@ public class Grafo{
 		}
 	}
 
-	public String aStar(char inicio, char fin, HashMap<Character,Integer> heuristic){
+	public String aStar(char inicio, HashMap<Character,Integer> heuristic){
 		this.heuristic = heuristic;
+		char fin = inicio;
 		if(!nodos.containsKey(inicio) || !nodos.containsKey(fin)){
 			return "Los nodos que ingresaste no están en el grafo";
-		}else if(inicio == fin && nodos.containsKey(inicio) && nodos.containsKey(fin)){
-			return "Camino: "+inicio+" / 0";
 		}else{
 			implementHeuristic();
 			return aStar(inicio,fin);
@@ -64,6 +63,8 @@ public class Grafo{
 		incial.addCaminoPeso(inicio+"/"+incial.getGh());
 		frontera.add(incial);
 
+		boolean f = true;
+
 		while(true){
 			if(frontera.size() == 0){
 				return "No es posible llegar de "+inicio+" a "+fin;
@@ -74,11 +75,13 @@ public class Grafo{
 				* la frontera
 				* Descomentar junto con linea 151
 				*/
-				//System.out.println("Frontera: "+frontera);
+				System.out.println("Frontera: "+frontera);
 				
 				Nodo aux = frontera.poll();
+				
 
-				if(aux.getId() == fin){
+
+				if(!f && aux.getId() == fin){
 					solucion = aux;
 					break;
 				}else{
@@ -138,7 +141,11 @@ public class Grafo{
 					    }
 
 					}
-					visitados.add(aux.getId());
+					if(f){
+						f = false;
+					}else{
+						visitados.add(aux.getId());
+					}
 
 				}
 

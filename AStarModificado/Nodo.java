@@ -132,4 +132,10 @@ public class Nodo implements Comparable<Nodo>{
 		return sb.toString();
 	}
 
+	public void removeVisitados(List<Character> vistados){
+		for(char c : vistados){
+			this.adyacentes.remove(c);
+		}
+	}
+
 }

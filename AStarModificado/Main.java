@@ -11,13 +11,13 @@ public class Main{
 		Grafo gf = new Grafo();
 
 		HashMap<Character,Integer> heuristic = new HashMap<Character,Integer>();
-		heuristic.put('A',42);
-		heuristic.put('B',40);
-		heuristic.put('C',35);
-		heuristic.put('D',30);
-		heuristic.put('E',50);
-		heuristic.put('F',18);
-		heuristic.put('G',20);
+		heuristic.put('A',0);
+		heuristic.put('B',0);
+		heuristic.put('C',0);
+		heuristic.put('D',0);
+		heuristic.put('E',0);
+		heuristic.put('F',0);
+		heuristic.put('G',0);
 
 		//gf.setHeuristic(heuristic);
 
@@ -29,7 +29,7 @@ public class Main{
 		Nodo f = new Nodo('F');
 		Nodo g = new Nodo('G');
 
-		Nodo[] nodos = {a,b,c,d,e,f,g,h,i};
+		Nodo[] nodos = {a,b,c,d,e,f,g};
 
 		gf.addNodos(nodos);
 
@@ -48,46 +48,7 @@ public class Main{
 
 		gf.addAdyacenteBi('G','F',5);
 
-
-		int option = -1;
-
-		while(option!=2){
-			option = Integer.parseInt(
-				JOptionPane.showInputDialog("1.Encuentra una ruta\n2.Salir"));
-			if(option == 1){
-				String[] data = JOptionPane.showInputDialog(
-					"Ingresa los ID's de los nodos separados por una coma. \n\tEjemplo: A,H").toUpperCase().split(",");
-
-				if(data.length>2){
-					JOptionPane.showMessageDialog(null,"Ingreso incorrecto de datos");
-				}else{
-					if(data[0].length() == 1 && data[1].length()==1){
-						char inicio = data[0].charAt(0);
-						char fin = data[1].charAt(0);
-
-						String rs = gf.aStar(inicio,fin,heuristic);
-
-						JTextArea textArea = new JTextArea(rs);
-						JScrollPane scrollPane=new JScrollPane(textArea);
-						textArea.setLineWrap(true);
-						scrollPane.setPreferredSize(new Dimension(400,200));
-						JOptionPane.showMessageDialog(null, 
-							scrollPane,
-							"Ruta de "+data[0]+" a "+data[1]+" con A*",
-		   					JOptionPane.YES_NO_OPTION);	
-
-					}else{
-						JOptionPane.showMessageDialog(null,"Ingreso incorrecto de datos");
-					}
-				}
-
-			}else if(option == 2){
-				break;
-			}else{
-				JOptionPane.showMessageDialog(null,"Elige una opción disponible");
-			}
-		}
-
+		System.out.println(gf.aStar('A',heuristic));
 	}
 
 }

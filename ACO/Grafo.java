@@ -83,12 +83,8 @@ public class Grafo{
 						if(h.getNumeroVisitados() == this.nodos.size()){
 
 							String s = h.caminoToString();
-							if(mejoresCaminos.containsKey(s)){
-								int veces = mejoresCaminos.get(s);
-								veces++;
-								mejoresCaminos.put(s,veces);
-							}else{
-								mejoresCaminos.put(s,1);
+							if(!mejoresCaminos.containsKey(s)){
+								mejoresCaminos.put(s,h.getAcumuladoCamino());
 							}
 						}
 						break;
@@ -142,11 +138,11 @@ public class Grafo{
 			return "No hay forma de completar el recorrido";
 		}else{
 			Iterator it = mejoresCaminos.entrySet().iterator();
-			int mayor = -1;
+			int menor = Integer.MAX_VALUE;
 			String mejorCamino = "";
 			while (it.hasNext()) {
 			    Map.Entry pair = (Map.Entry)it.next();
-			    if((int)pair.getValue()>mayor){
+			    if((int)pair.getValue()<menor){
 			    	mejorCamino = (String)pair.getKey(); 
 			    }
 			    //System.out.println(pair.getKey() + " = " + pair.getValue());
